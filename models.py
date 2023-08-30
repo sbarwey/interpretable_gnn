@@ -416,7 +416,7 @@ class Multiscale_MessagePassing_Layer(torch.nn.Module):
                             x_t = self.act(x_t) 
                     x = x + x_t
                     x = self.node_up_norms[m][i](x)
-        return x 
+        return x, edge_attr 
 
     def input_dict(self):
         a = { 'edge_aggregator' : self.edge_aggregator, 
@@ -660,9 +660,9 @@ class GNN_TopK(torch.nn.Module):
         n_mp = self.n_mp_down_topk[m] # number of message passing blocks 
         for i in range(n_mp):
             if not self.param_sharing: 
-                x = self.down_mps[m][i](x, edge_index, edge_attr, pos, batch=batch)
+                x, edge_attr = self.down_mps[m][i](x, edge_index, edge_attr, pos, batch=batch)
             else:
-                x = self.down_mps(x, edge_index, edge_attr, pos, batch=batch)
+                x, edge_attr = self.down_mps(x, edge_index, edge_attr, pos, batch=batch)
 
         xs = [x] 
         positions = [pos]
@@ -691,9 +691,9 @@ class GNN_TopK(torch.nn.Module):
 
             for i in range(self.n_mp_down_topk[m]):
                 if not self.param_sharing:
-                    x = self.down_mps[m][i](x, edge_index, edge_attr, pos, batch=batch)
+                    x, edge_attr = self.down_mps[m][i](x, edge_index, edge_attr, pos, batch=batch)
                 else:
-                    x = self.down_mps(x, edge_index, edge_attr, pos, batch=batch)
+                    x, edge_attr = self.down_mps(x, edge_index, edge_attr, pos, batch=batch)
             
             if m < self.depth:
                 xs += [x]
@@ -713,9 +713,9 @@ class GNN_TopK(torch.nn.Module):
         m = 0
         for i in range(self.n_mp_up_topk[m]):
             if not self.param_sharing:
-                x = self.up_mps[m][i](x, edge_index, edge_attr, pos, batch=batch)
+                x, edge_attr = self.up_mps[m][i](x, edge_index, edge_attr, pos, batch=batch)
             else:
-                x = self.up_mps(x, edge_index, edge_attr, pos, batch=batch)
+                x, edge_attr = self.up_mps(x, edge_index, edge_attr, pos, batch=batch)
         
         # upward cycle
         for m in range(self.depth):
@@ -750,9 +750,9 @@ class GNN_TopK(torch.nn.Module):
             for i in range(self.n_mp_up_topk[m+1]):
                 for r in range(1):
                     if not self.param_sharing:
-                        x = self.up_mps[m+1][i](x, edge_index, edge_attr, pos, batch=batch)
+                        x, edge_attr = self.up_mps[m+1][i](x, edge_index, edge_attr, pos, batch=batch)
                     else:
-                        x = self.up_mps(x, edge_index, edge_attr, pos, batch=batch)
+                        x, edge_attr = self.up_mps(x, edge_index, edge_attr, pos, batch=batch)
 
 
         # ~~~~ Node decoder
