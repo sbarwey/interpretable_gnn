@@ -1,21 +1,21 @@
 # About This Repository
-Supplementary material for the following paper: Barwey, Shivam, Varun Shankar, Venkatasubramanian Viswanathan, and Romit Maulik. "Multiscale Graph Neural Network Autoencoders for Interpretable Scientific Machine Learning." arXiv preprint arXiv:2302.06186 (2023). Contains example code that trains GNN on unstructured MNIST dataset, as demonstrated in Appendix A in the paper.
+Supplementary material for the following paper: Barwey, Shivam, Varun Shankar, Venkatasubramanian Viswanathan, and Romit Maulik. "Multiscale Graph Neural Network Autoencoders for Interpretable Scientific Machine Learning." Journal of Computational Physics (2023). Contains example code that trains GNN on unstructured MNIST dataset, as demonstrated in Appendix A in the paper.
 
 
-Paper: https://arxiv.org/abs/2302.06186
+Paper: https://www.sciencedirect.com/science/article/pii/S0021999123006320
 
 Please cite using the following BibTeX entry upon usage or reference of any code/data: 
 
 ```
-@misc{https://doi.org/10.48550/arxiv.2302.06186,
-  doi = {10.48550/ARXIV.2302.06186},
-  url = {https://arxiv.org/abs/2302.06186},
-  author = {Barwey, Shivam and Shankar, Varun and Viswanathan, Venkatasubramanian and Maulik, Romit},
-  keywords = {Machine Learning (cs.LG), Fluid Dynamics (physics.flu-dyn), FOS: Computer and information sciences, FOS: Computer and information sciences, FOS: Physical sciences, FOS: Physical sciences},
-  title = {Multiscale Graph Neural Network Autoencoders for Interpretable Scientific Machine Learning},
-  publisher = {arXiv},
-  year = {2023},
-  copyright = {arXiv.org perpetual, non-exclusive license}
+@article{BARWEY2023112537,
+title = {Multiscale Graph Neural Network Autoencoders for Interpretable Scientific Machine Learning},
+journal = {Journal of Computational Physics},
+pages = {112537},
+year = {2023},
+issn = {0021-9991},
+doi = {https://doi.org/10.1016/j.jcp.2023.112537},
+url = {https://www.sciencedirect.com/science/article/pii/S0021999123006320},
+author = {Shivam Barwey and Varun Shankar and Venkatasubramanian Viswanathan and Romit Maulik}
 }
 ```
 
